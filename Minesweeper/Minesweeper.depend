@@ -1,8 +1,14 @@
 # depslib dependency file v1.0
-1585733239 source:c:\users\admin\desktop\minesweeper\main.cpp
+1585993738 source:c:\users\admin\desktop\minesweeper\main.cpp
+	"solving.h"
+
+1585992538 c:\users\admin\desktop\minesweeper\solving.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
 	<cstdlib>
 	<ctime>
+
+1585992645 source:c:\users\admin\desktop\minesweeper\solving.cpp
+	"solving.h"
 
