@@ -12,3 +12,16 @@
 1585992645 source:c:\users\admin\desktop\minesweeper\solving.cpp
 	"solving.h"
 
+1585992645 source:c:\users\admin\documents\github\minesweeper\minesweeper\solving.cpp
+	"solving.h"
+
+1585992538 c:\users\admin\documents\github\minesweeper\minesweeper\solving.h
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1586511416 source:c:\users\admin\documents\github\minesweeper\minesweeper\main.cpp
+	"solving.h"
+
