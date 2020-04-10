@@ -19,61 +19,13 @@ bool flag = false;
 bool quit = false;
 bool result = false;
 
-int grid[12][12];
-int sgrid[12][12];
-
-bool isOpen[12][12];
-bool isMark[12][12];
-
-void openCell(int x, int y)
-{
-    if(isOpen[x][y] == true||isMark[x][y] == true)
-        return ;
-    isOpen[x][y] = true;
-    if(grid[x][y] == 9)
-        return ;
-    Count1++;
-    if(grid[x][y]>0&&grid[x][y]<10)
-    {
-        sgrid[x][y] = grid[x][y];
-    }
-    else if(grid[x][y]==0){
-        sgrid[x][y]=0;
-        int r1=x==1 ? 0:-1;
-        int c1=y==1 ? 0:-1;
-        int r2=x==10 ? 1:2;
-        int c2=y==10 ? 1:2;
-        for(;r1<r2;r1++){
-            for(int j=c1;j<c2;j++){
-                openCell(x+r1, y+j);
-            }
-        }
-    }
-    return ;
-}
 
 int main(int arc, char*argv[]){
 
 	srand(time(0));
-	for(int i=1;i<=10;i++)
-    {
-        for(int j=1;j<=10;j++){
-            sgrid[i][j] = 10;
-        }
-    }
-    for(int i=0;i<=11;i++)
-    {
-        for(int j=0;j<=11;j++){
-            isMark[i][j] = false;
-        }
-    }
-    isMark[0][0]=true;
-    for(int i=0;i<=11;i++)
-    {
-        for(int j=0;j<=11;j++){
-            isOpen[i][j] = false;
-        }
-    }
+
+	//SDL_Texture* man_hinh = LoadTexture("hinh_nen.png");
+    map2 = LoadTexture("completed1.png");
 	map1 = LoadTexture("tiles.jpg");
 	gameoverimg = LoadTexture("lose.png");
 	win = LoadTexture("win.jpg");
@@ -87,10 +39,11 @@ int main(int arc, char*argv[]){
     SDL_Event phim;
     bool gameover = false;
 
+	int grid[12][12];
 	for(int i=1;i<=10;i++)
 	{
 		for(int j=1;j<=10;j++){
-			if(rand()%6==0)
+			if(rand()%5==0)
 				grid[i][j]=9;
 			else
 				grid[i][j]=0;
@@ -112,6 +65,11 @@ int main(int arc, char*argv[]){
 		    Count++;
 		}
 	}
+
+
+
+	SDL_RenderCopy(render, map2, NULL, &toa_do);
+
     while(!gameover){
         while(SDL_PollEvent(&phim) != 0){
 			if(phim.type == SDL_MOUSEBUTTONDOWN){
@@ -119,43 +77,36 @@ int main(int arc, char*argv[]){
 					SDL_GetMouseState(&x, &y);
 					x=x/32;
 					y=y/32;
-					//isMark[x+1][y+1] = false;
-					//Count1++;
+					flag = false;
+					Count1++;
 				}
 				if(phim.button.button == SDL_BUTTON_RIGHT){
 					SDL_GetMouseState(&x, &y);
 					x=x/32;
 					y=y/32;
-					isMark[x+1][y+1] = true;
+					flag = true;
 				}
 			}
-			if(grid[x+1][y+1]==9&&isMark[x+1][y+1]==false){
+			if(grid[x+1][y+1]==9&&flag==false){
                 gameover = true;
                 result = false;
 			}
         }
-        for(int i=1;i<=10;i++){
-            for(int j=1;j<=10;j++){
-                SDL_Rect clip = {sgrid[i][j]*32,0,32,32};// vị trí để cắt ảnh kết quả
-                SDL_Rect screen = {(i-1)*32,(j-1)*32,32,32};
-                SDL_RenderCopy(render, map1, &clip, &screen);
-            }
-        }
-
         if(Count1==Count)
-            {gameover=true;}
-		//SDL_Rect position;
-		if(isMark[x+1][y+1]==false){
-            //position ={grid[x+1][y+1]*32,0,32,32};
-            openCell(x+1, y+1);
+            gameover=true;
+
+		SDL_Rect position;// vị trí để cắt ảnh kết quả
+		if(flag==false){
+            position ={grid[x+1][y+1]*32,0,32,32};
+
 		}
 		else
         {
-            //position = {11*32,0,32,32};
-            sgrid[x+1][y+1] = 11;
+            position = {11*32,0,32,32};
         }
-		//SDL_Rect currentpos = {x*32,y*32,32,32};// vị trí để tải ảnh đã cắt lên
-		//SDL_RenderCopy(render, map1, &position, &currentpos);
+		SDL_Rect currentpos = {x*32,y*32,32,32};// vị trí để tải ảnh đã cắt lên
+
+		SDL_RenderCopy(render, map1, &position, &currentpos);
         SDL_RenderPresent(render);
     }
     SDL_Rect position1;
