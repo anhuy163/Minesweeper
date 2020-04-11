@@ -7,7 +7,6 @@ const int chieu_cao = 320;
 SDL_Window* cua_so = SDL_CreateWindow("Minesweeper", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, chieu_rong, chieu_cao, SDL_WINDOW_SHOWN);
 
 SDL_Renderer* render = SDL_CreateRenderer(cua_so, -1, SDL_RENDERER_ACCELERATED);
-SDL_Texture* map2 = NULL;
 SDL_Texture* map1 = NULL;
 SDL_Texture* gameoverimg = NULL;
 SDL_Texture* win = NULL;
@@ -77,7 +76,7 @@ int main(int arc, char*argv[]){
     }
 
 	map1 = LoadTexture("tiles.jpg");
-	gameoverimg = LoadTexture("lose.png");
+	gameoverimg = LoadTexture("gameover1.jpg");
 	win = LoadTexture("win.jpg");
 
     SDL_Rect toa_do;
@@ -117,7 +116,7 @@ int main(int arc, char*argv[]){
 
 
 
-	SDL_RenderCopy(render, map2, NULL, &toa_do);
+	//SDL_RenderCopy(render, map2, NULL, &toa_do);
 
     while(!gameover){
         while(SDL_PollEvent(&phim) != 0){

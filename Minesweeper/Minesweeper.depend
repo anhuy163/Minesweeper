@@ -12,7 +12,7 @@
 1585992645 source:c:\users\admin\desktop\minesweeper\solving.cpp
 	"solving.h"
 
-1585992645 source:c:\users\admin\documents\github\minesweeper\minesweeper\solving.cpp
+1586604208 source:c:\users\admin\documents\github\minesweeper\minesweeper\solving.cpp
 	"solving.h"
 
 1585992538 c:\users\admin\documents\github\minesweeper\minesweeper\solving.h
@@ -22,6 +22,6 @@
 	<cstdlib>
 	<ctime>
 
-1586511416 source:c:\users\admin\documents\github\minesweeper\minesweeper\main.cpp
+1586604234 source:c:\users\admin\documents\github\minesweeper\minesweeper\main.cpp
 	"solving.h"
 

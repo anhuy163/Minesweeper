@@ -4,7 +4,7 @@ extern SDL_Window* cua_so ;
 
 extern SDL_Renderer* render ;
 
-extern SDL_Texture* map2, *map1, *gameoverimg, *win;
+extern SDL_Texture *map1, *gameoverimg, *win;
 
 void close()
 {
@@ -14,8 +14,6 @@ void close()
     render = NULL;
     SDL_DestroyTexture(map1);
     map1 = NULL;
-    SDL_DestroyTexture(map2);
-    map2 = NULL;
     SDL_DestroyTexture(gameoverimg);
     gameoverimg = NULL;
     SDL_Quit();
