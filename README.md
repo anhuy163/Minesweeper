@@ -1,0 +1,8 @@
+# Minesweeper
+GAME CỦA EM LÀ GAME DÒ MÌN VỚI Ý TƯỞNG DỰA TRÊN GAME CỦA WINDOWS
+THƯ VIỆN ĐỒ HỌA LÀ SDL2.0
+CÁCH ĐỂ MỞ TRÒ CHƠI:
+_ MỞ FILE MINESWEEPER TRONG REPOSITORY Minesweeper
+_ ẤN VÀO FILE Minesweeper.cbp
+_ CHẠY CHƯƠNG TRÌNH BẰNG CODEBLOCK VÀ THƯỞNG THỨC
+EM XIN HẾT Ạ.
