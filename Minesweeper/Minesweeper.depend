@@ -12,8 +12,7 @@
 1585992645 source:c:\users\admin\desktop\minesweeper\solving.cpp
 	"solving.h"
 
-1586604208 source:c:\users\admin\documents\github\minesweeper\minesweeper\solving.cpp
-	"solving.h"
+1587818515 source:c:\users\admin\documents\github\minesweeper\minesweeper\solving.cpp
 
 1585992538 c:\users\admin\documents\github\minesweeper\minesweeper\solving.h
 	<SDL.h>
@@ -22,6 +21,24 @@
 	<cstdlib>
 	<ctime>
 
-1586604234 source:c:\users\admin\documents\github\minesweeper\minesweeper\main.cpp
-	"solving.h"
+1587824886 source:c:\users\admin\documents\github\minesweeper\minesweeper\main.cpp
+	"texture.h"
+	"datasolving.h"
+	<ctime>
+
+1587825525 c:\users\admin\documents\github\minesweeper\minesweeper\texture.h
+	<SDL.h>
+	<iostream>
+	<SDL_image.h>
+
+1587825554 source:c:\users\admin\documents\github\minesweeper\minesweeper\texture.cpp
+	"texture.h"
+
+1587824998 source:c:\users\admin\documents\github\minesweeper\minesweeper\datasolving.cpp
+	"datasolving.h"
+	"texture.h"
+
+1587822401 c:\users\admin\documents\github\minesweeper\minesweeper\datasolving.h
+	<cstdlib>
+	<SDL.h>
 

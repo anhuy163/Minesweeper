@@ -32,9 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="datasolving.cpp" />
+		<Unit filename="datasolving.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="solving.cpp" />
 		<Unit filename="solving.h" />
+		<Unit filename="texture.cpp" />
+		<Unit filename="texture.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
