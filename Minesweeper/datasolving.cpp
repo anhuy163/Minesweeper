@@ -77,6 +77,7 @@ void Open_cell(int x, int y){
 void Game_play(){
     Init_Game_play();
     int x=-1, y=-1;
+    bool result=false;
     bool gameover=false;
     SDL_Event phim;
     Game_map.Load_from_file("tiles.jpg");
@@ -94,6 +95,7 @@ void Game_play(){
                     y=y/32;
                     if(grid[x][y]==9&&sgrid[x][y]!=11){
                         gameover=true;
+                        result=false;
                     }
                     Open_cell(x, y);
                 }
@@ -112,6 +114,7 @@ void Game_play(){
         }
         if(opened_cell==safe_cell){
             gameover=true;
+            result=true;
         }
         SDL_RenderClear(render);
         for(int i=0;i<10;i++){
@@ -131,5 +134,17 @@ void Game_play(){
         }
     }
     SDL_RenderPresent(render);
-    SDL_Delay(5000);
+    SDL_Delay(2000);
+    if(result == false){
+        Game_map.Load_from_file("gameover1.jpg");
+        Game_map.ResultMap();
+        SDL_RenderPresent(render);
+        SDL_Delay(3000);
+    }
+    else if(result == true){
+        Game_map.Load_from_file("win.jpg");
+        Game_map.ResultMap();
+        SDL_RenderPresent(render);
+        SDL_Delay(3000);
+    }
 }

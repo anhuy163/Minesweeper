@@ -13,6 +13,10 @@ void texture::Load_from_file(std::string path){
     SDL_FreeSurface(surface);
 }
 
+void texture::ResultMap(){
+    SDL_Rect Rpos = {0, 0, 320, 320};
+    SDL_RenderCopy(render, maptext, NULL, &Rpos);
+}
 void texture::Render(){
     SDL_Rect Mpos = {position.x, position.y, width, height};
     SDL_RenderCopy(render, maptext, &CatAnh, &Mpos);

@@ -20,6 +20,8 @@ public:
 
     void Set_rect(int x, int y, int w, int h);
 
+    void ResultMap();
+
 };
 
 
