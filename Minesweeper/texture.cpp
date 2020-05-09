@@ -7,8 +7,6 @@ void texture::Load_from_file(std::string path){
     SDL_Texture* texture = NULL;
     SDL_Surface* surface = IMG_Load(path.c_str());
     texture = SDL_CreateTextureFromSurface(render, surface);
-    height = surface->h;
-    width = surface->w;
     maptext = texture;
     SDL_FreeSurface(surface);
 }

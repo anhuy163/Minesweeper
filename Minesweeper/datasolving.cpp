@@ -1,6 +1,8 @@
 #include "datasolving.h"
 #include "texture.h"
 
+using namespace std;
+
 extern SDL_Renderer* render;
 extern texture Game_map;
 int grid[10][10];
@@ -9,7 +11,7 @@ int safe_cell=0, opened_cell=0;
 
 int dem_bom(int x, int y){
     int dem=0;
-    int r1=x==0 ? 0:-1;
+    int r1=x==0 ? 0:-1; //int x=a==b ? c:d;
     int c1=y==0 ? 0:-1;
     int r2=x==9 ? 1:2;
     int c2=y==9 ? 1:2;
@@ -55,7 +57,7 @@ void Open_cell(int x, int y){
     if(grid[x][y]==9)
         return;
     opened_cell++;
-    if(grid[x][y]>=1&&grid[x][y]<=8){
+    if(grid[x][y]>=1&&grid[x][y]<9){
         sgrid[x][y]=grid[x][y];
     }
     else{
@@ -74,11 +76,12 @@ void Open_cell(int x, int y){
     }
 
 }
-void Game_play(){
+int Game_play(){
     Init_Game_play();
     int x=-1, y=-1;
     bool result=false;
     bool gameover=false;
+    bool ketqua=false;
     SDL_Event phim;
     Game_map.Load_from_file("tiles.jpg");
     Game_map.Set_size(32, 32);
@@ -86,7 +89,7 @@ void Game_play(){
         while(SDL_PollEvent(&phim)!=0){
             if(phim.type == SDL_QUIT)
             {
-                gameover=true;
+                return 0;
             }
             if(phim.type==SDL_MOUSEBUTTONDOWN){
                 if(phim.button.button==SDL_BUTTON_LEFT){
@@ -134,17 +137,30 @@ void Game_play(){
         }
     }
     SDL_RenderPresent(render);
-    SDL_Delay(2000);
+    SDL_Delay(1000);
     if(result == false){
-        Game_map.Load_from_file("gameover1.jpg");
-        Game_map.ResultMap();
-        SDL_RenderPresent(render);
-        SDL_Delay(3000);
+            Game_map.Load_from_file("losemap.jpg");
     }
     else if(result == true){
-        Game_map.Load_from_file("win.jpg");
-        Game_map.ResultMap();
-        SDL_RenderPresent(render);
-        SDL_Delay(3000);
+        Game_map.Load_from_file("winmap.jpg");
     }
+
+    while(!ketqua){
+        while(SDL_PollEvent(&phim)!=0){
+            if(phim.type == SDL_QUIT)
+            {
+                return 0;
+            }
+            if(phim.type==SDL_KEYDOWN){
+                if(phim.key.keysym.sym==SDLK_SPACE){
+                    return Game_play();
+                }
+            }
+        }
+
+        Game_map.ResultMap();
+
+        SDL_RenderPresent(render);
+    }
+
 }
