@@ -4,7 +4,7 @@
 #include<SDL.h>
 
 int dem_bom(int x, int y);
-void Init_Game_play();
+void Game_preparation();
 void Open_cell(int x, int y);
 int Game_play();
 

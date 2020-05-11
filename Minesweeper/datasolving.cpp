@@ -11,10 +11,10 @@ int safe_cell=0, opened_cell=0;
 
 int dem_bom(int x, int y){
     int dem=0;
-    int r1=x==0 ? 0:-1; //int x=a==b ? c:d;
-    int c1=y==0 ? 0:-1;
-    int r2=x==9 ? 1:2;
-    int c2=y==9 ? 1:2;
+    int r1=(x==0) ? 0:-1; //int x=a==b ? c:d;
+    int c1=(y==0) ? 0:-1;
+    int r2=(x==9) ? 1:2;
+    int c2=(y==9) ? 1:2;
     for(;r1<r2;r1++){
         for(int j=c1;j<c2;j++){
             if(grid[x+r1][y+j]==9){
@@ -24,9 +24,7 @@ int dem_bom(int x, int y){
     }
     return dem;
 }
-void Init_Game_play(){
-    safe_cell=0;
-    opened_cell=0;
+void Game_preparation(){
     for(int i=0;i<10;i++){
         for(int j=0;j<10;j++){
             if(rand()%5==0){
@@ -63,10 +61,10 @@ void Open_cell(int x, int y){
     else{
         if(grid[x][y]==0){
             sgrid[x][y]=0;
-            int r1=x==0 ? 0:-1;
-            int c1=y==0 ? 0:-1;
-            int r2=x==9 ? 1:2;
-            int c2=y==9 ? 1:2;
+            int r1=(x==0) ? 0:-1;
+            int c1=(y==0) ? 0:-1;
+            int r2=(x==9) ? 1:2;
+            int c2=(y==9) ? 1:2;
             for(;r1<r2;r1++){
                 for(int j=c1;j<c2;j++){
                     Open_cell(x+r1, y+j);
@@ -77,7 +75,8 @@ void Open_cell(int x, int y){
 
 }
 int Game_play(){
-    Init_Game_play();
+
+    Game_preparation();
     int x=-1, y=-1;
     bool result=false;
     bool gameover=false;
@@ -86,6 +85,15 @@ int Game_play(){
     Game_map.Load_from_file("tiles.jpg");
     Game_map.Set_size(32, 32);
     while(!gameover){
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                Game_map.Set_rect(sgrid[i][j]*32, 0, 32, 32); // cat anh in ra map
+                Game_map.Set_pos(i*32, j*32); // lay vi tri in ra man hinh
+                Game_map.Render();
+            }
+        }
+        SDL_RenderPresent(render);
+
         while(SDL_PollEvent(&phim)!=0){
             if(phim.type == SDL_QUIT)
             {
@@ -115,20 +123,15 @@ int Game_play(){
                 }
             }
         }
+
         if(opened_cell==safe_cell){
             gameover=true;
             result=true;
         }
+
         SDL_RenderClear(render);
-        for(int i=0;i<10;i++){
-            for(int j=0;j<10;j++){
-                Game_map.Set_rect(sgrid[i][j]*32, 0, 32, 32); // cat anh in ra map
-                Game_map.Set_pos(i*32, j*32); // lay vi tri in ra man hinh
-                Game_map.Render();
-            }
-        }
-        SDL_RenderPresent(render);
     }
+
     for(int i=0;i<10;i++){
         for(int j=0;j<10;j++){
             Game_map.Set_rect(grid[i][j]*32,0,32,32);
@@ -136,16 +139,20 @@ int Game_play(){
             Game_map.Render();
         }
     }
+
     SDL_RenderPresent(render);
     SDL_Delay(1000);
+
     if(result == false){
-            Game_map.Load_from_file("losemap.jpg");
+        Game_map.Load_from_file("losegamemap.jpg");
     }
     else if(result == true){
         Game_map.Load_from_file("winmap.jpg");
     }
 
     while(!ketqua){
+        Game_map.ResultMap();
+        SDL_RenderPresent(render);
         while(SDL_PollEvent(&phim)!=0){
             if(phim.type == SDL_QUIT)
             {
@@ -157,10 +164,6 @@ int Game_play(){
                 }
             }
         }
-
-        Game_map.ResultMap();
-
-        SDL_RenderPresent(render);
     }
 
 }
