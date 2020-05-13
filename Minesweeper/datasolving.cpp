@@ -9,6 +9,21 @@ int grid[10][10];
 int sgrid[10][10];
 int safe_cell=0, opened_cell=0;
 
+int dem_co(int x, int y){
+    int demco=0;
+    int r1=(x==0) ? 0:-1; //int x=a==b ? c:d;
+    int c1=(y==0) ? 0:-1;
+    int r2=(x==9) ? 1:2;
+    int c2=(y==9) ? 1:2;
+    for(;r1<r2;r1++){
+        for(int j=c1;j<c2;j++){
+            if(sgrid[x+r1][y+j]==11){
+                demco++;
+            }
+        }
+    }
+    return demco;
+}
 int dem_bom(int x, int y){
     int dem=0;
     int r1=(x==0) ? 0:-1; //int x=a==b ? c:d;
@@ -24,6 +39,7 @@ int dem_bom(int x, int y){
     }
     return dem;
 }
+
 void Game_preparation(){
     for(int i=0;i<10;i++){
         for(int j=0;j<10;j++){
@@ -74,6 +90,30 @@ void Open_cell(int x, int y){
     }
 
 }
+
+void quick_open_cell(int x, int y, bool& gameover){
+    if(dem_co(x, y)!=dem_bom(x, y))
+        return;
+    else{
+        int r1=(x==0) ? 0:-1;
+        int c1=(y==0) ? 0:-1;
+        int r2=(x==9) ? 1:2;
+        int c2=(y==9) ? 1:2;
+        for(;r1<r2;r1++){
+            for(int j=c1;j<c2;j++){
+                if(sgrid[x+r1][y+j]==11)
+                    continue;
+                if(grid[x+r1][y+j]==9&&sgrid[x+r1][y+j]!=11){
+                    gameover = true;
+                    return;
+                }
+                else
+                    Open_cell(x+r1, y+j);
+            }
+        }
+    }
+}
+
 int Game_play(){
 
     Game_preparation();
@@ -108,7 +148,10 @@ int Game_play(){
                         gameover=true;
                         result=false;
                     }
-                    Open_cell(x, y);
+                    else if(sgrid[x][y]==10)
+                        Open_cell(x, y);
+                    else if(sgrid[x][y]>=1&&sgrid[x][y]<=8)
+                        quick_open_cell(x, y, gameover);
                 }
                 if(phim.button.button==SDL_BUTTON_RIGHT){
                     SDL_GetMouseState(&x, &y);
@@ -165,5 +208,6 @@ int Game_play(){
             }
         }
     }
+    return 0;
 
 }
