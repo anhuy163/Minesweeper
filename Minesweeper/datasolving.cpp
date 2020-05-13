@@ -40,6 +40,52 @@ int dem_bom(int x, int y){
     return dem;
 }
 
+void Open_cell(int x, int y){
+    if(sgrid[x][y]>=0&&sgrid[x][y]<9)
+        return;
+    if(sgrid[x][y]==11)
+        return;
+    if(grid[x][y]==9)
+        return;
+    opened_cell++;
+    if(grid[x][y]>=1&&grid[x][y]<9){
+        sgrid[x][y]=grid[x][y];
+    }
+    else if(grid[x][y]==0){
+        sgrid[x][y]=0;
+        int r1=(x==0) ? 0:-1;
+        int c1=(y==0) ? 0:-1;
+        int r2=(x==9) ? 1:2;
+        int c2=(y==9) ? 1:2;
+        for(;r1<r2;r1++){
+            for(int j=c1;j<c2;j++){
+                Open_cell(x+r1, y+j);
+            }
+        }
+    }
+}
+
+void quick_open_cell(int x, int y, bool& gameover){
+    if(dem_co(x, y)!=dem_bom(x, y))
+        return;
+    else{
+        int r1=(x==0) ? 0:-1;
+        int c1=(y==0) ? 0:-1;
+        int r2=(x==9) ? 1:2;
+        int c2=(y==9) ? 1:2;
+        for(;r1<r2;r1++){
+            for(int j=c1;j<c2;j++){
+                if(grid[x+r1][y+j]==9&&sgrid[x+r1][y+j]!=11){
+                    gameover = true;
+                    return;
+                }
+                else
+                    Open_cell(x+r1, y+j);
+            }
+        }
+    }
+}
+
 void Game_preparation(){
     for(int i=0;i<10;i++){
         for(int j=0;j<10;j++){
@@ -60,56 +106,6 @@ void Game_preparation(){
     for(int i=0;i<10;i++){
         for(int j=0;j<10;j++){
             sgrid[i][j]=10;
-        }
-    }
-}
-void Open_cell(int x, int y){
-    if(sgrid[x][y]>=0&&sgrid[x][y]<9)
-        return;
-    if(sgrid[x][y]==11)
-        return;
-    if(grid[x][y]==9)
-        return;
-    opened_cell++;
-    if(grid[x][y]>=1&&grid[x][y]<9){
-        sgrid[x][y]=grid[x][y];
-    }
-    else{
-        if(grid[x][y]==0){
-            sgrid[x][y]=0;
-            int r1=(x==0) ? 0:-1;
-            int c1=(y==0) ? 0:-1;
-            int r2=(x==9) ? 1:2;
-            int c2=(y==9) ? 1:2;
-            for(;r1<r2;r1++){
-                for(int j=c1;j<c2;j++){
-                    Open_cell(x+r1, y+j);
-                }
-            }
-        }
-    }
-
-}
-
-void quick_open_cell(int x, int y, bool& gameover){
-    if(dem_co(x, y)!=dem_bom(x, y))
-        return;
-    else{
-        int r1=(x==0) ? 0:-1;
-        int c1=(y==0) ? 0:-1;
-        int r2=(x==9) ? 1:2;
-        int c2=(y==9) ? 1:2;
-        for(;r1<r2;r1++){
-            for(int j=c1;j<c2;j++){
-                if(sgrid[x+r1][y+j]==11)
-                    continue;
-                if(grid[x+r1][y+j]==9&&sgrid[x+r1][y+j]!=11){
-                    gameover = true;
-                    return;
-                }
-                else
-                    Open_cell(x+r1, y+j);
-            }
         }
     }
 }
