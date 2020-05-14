@@ -24,5 +24,4 @@ public:
 
 };
 
-
 #endif // TEXTURE_H_INCLUDED

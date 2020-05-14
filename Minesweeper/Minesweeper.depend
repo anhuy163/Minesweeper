@@ -42,3 +42,24 @@
 	<cstdlib>
 	<SDL.h>
 
+1589376352 source:c:\users\admin\documents\github\minesweeper\datasolving.cpp
+	"datasolving.h"
+	"texture.h"
+
+1589376352 c:\users\admin\documents\github\minesweeper\datasolving.h
+	<cstdlib>
+	<SDL.h>
+
+1589376352 c:\users\admin\documents\github\minesweeper\texture.h
+	<SDL.h>
+	<iostream>
+	<SDL_image.h>
+
+1589376352 source:c:\users\admin\documents\github\minesweeper\main.cpp
+	"texture.h"
+	"datasolving.h"
+	<ctime>
+
+1589376352 source:c:\users\admin\documents\github\minesweeper\texture.cpp
+	"texture.h"
+

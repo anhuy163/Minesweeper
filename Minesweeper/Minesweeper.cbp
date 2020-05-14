@@ -35,7 +35,6 @@
 		<Unit filename="datasolving.cpp" />
 		<Unit filename="datasolving.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="solving.h" />
 		<Unit filename="texture.cpp" />
 		<Unit filename="texture.h" />
 		<Extensions>
