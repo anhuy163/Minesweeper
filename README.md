@@ -1,8 +1,7 @@
 # Minesweeper
-GAME CỦA EM LÀ GAME DÒ MÌN VỚI Ý TƯỞNG DỰA TRÊN GAME CỦA WINDOWS
-THƯ VIỆN ĐỒ HỌA LÀ SDL2.0
-CÁCH ĐỂ MỞ TRÒ CHƠI:
-_ MỞ FILE MINESWEEPER TRONG REPOSITORY Minesweeper
-_ ẤN VÀO FILE Minesweeper.cbp
-_ CHẠY CHƯƠNG TRÌNH BẰNG CODEBLOCK VÀ THƯỞNG THỨC
-EM XIN HẾT Ạ.
+A simple computer game based on Windows Minesweeper built by C++ and SDL2.0
+How to run the game:
+_ OPEN FILE MINESWEEPER IN REPOSITORY Minesweeper
+_ Click at Minesweeper.cbp
+_ Run the program with Codeblock and play
+
